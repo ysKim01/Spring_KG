@@ -53,7 +53,51 @@ SqlSession 클래스에서 제공하는 메소드
 - int delete(query_id, Object obj) : obj 객체의 값을
 조건문의 조건값으로 사용해 id에 대한 delete문을 실행한다.
 
+마이바티스로 조건값 전달 방법
+- MemberDAO에서 메서드 호출 시 전달된 조건 값은 매개변수 이름으로 
+SQL문의 조건식에 전달한다.
 
+SQL문에서 조건값 사용하는 방법
+- #{전달된 매개변수이름}
+
+마이바티스의 동적 SQL 기능 가능
+- select * from t_member
+- select * from t_member where id = ?;
+- select * from t_member where id = ? and pwd=?;
+- 공통 SQL문에 대해 조건값의 유무에 따라 동적으로 공통 SQL문에 조건
+절을 추가할 수 있다.
+
+마이바티스의 동적 SQL문의 특징
+- 주로 SQL문의 조건절에서 사용한다.
+- 조건절(where)에 조건을 동적으로 추가할 수 있다.
+- JSTL과 XML 기반으로 동적 SQL문을 작성한다.
+
+마이바티스의 동적 SQL문 구성 요소
+- if
+- choose(when, otherwise)
+- trim (where, set)
+- forEach
+
+<if> 태그 사용법
+<where>
+	<if test="조건식">
+		추가할 구문
+	</if>
+</where>
+
+<choose> 태그 사용법
+<choose>
+	<when test="조건식1">
+		구문1
+	</when>
+	<when test="조건식2">
+		구문2
+	</when>
+	....
+	<otherwise>
+		기타 구문
+	</otherwise>
+</choose>
 
 
 
