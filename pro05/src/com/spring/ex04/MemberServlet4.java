@@ -61,6 +61,13 @@ public class MemberServlet4 extends HttpServlet {
 			dao.insertMember(memberVO);
 			nextPage = "mem4.do?action=listMembers";
 		}
+		else if(action.equals("modForm")) {
+			String id = request.getParameter("id");
+			
+			memberVO = dao.selectMemberById(id);
+			request.setAttribute("member", memberVO);
+			nextPage = "test02/modMember.jsp";
+		}
 		else if(action.equals("updateMember")) {
 			String id = request.getParameter("id");
 			String pw = request.getParameter("pw");

@@ -21,19 +21,20 @@
 <table align='center'>
 	<tr>
 		<td width='200'><p align='right'>아이디</p></td>
-		<td width='400'><input type='text' name='id'></td>
+		<td width='400'><input type='text' name='id_show' value='${member.id}' disabled></td>
+		<input type='hidden' name='id' value='${member.id}'>
 	</tr>
 	<tr>
 		<td width='200'><p align='right'>패스워드</p></td>
-		<td width='400'><input type='password' name='pw'></td>
+		<td width='400'><input type='password' name='pw' value='${member.pw}'></td>
 	</tr>
 	<tr>
 		<td width='200'><p align='right'>이름</p></td>
-		<td width='400'><input type='text' name='name'></td>
+		<td width='400'><input type='text' name='name' value='${member.name}'></td>
 	</tr>
 	<tr>
 		<td width='200'><p align='right'>이메일</p></td>
-		<td width='400'><input type='text' name='email'></td>
+		<td width='400'><input type='text' name='email' value='${member.email}'></td>
 	</tr>
 	<tr>
 		<td width='200'><p>&nbsp;</p></td>
