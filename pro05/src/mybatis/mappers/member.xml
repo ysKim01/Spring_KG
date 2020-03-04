@@ -18,6 +18,12 @@
 		<result property='joinDate' column='joinDate'></result>
 	</resultMap> -->
 	
+	<sql id="a">
+		<![CDATA[
+			select * from t_member
+		]]>
+	</sql>
+	
 	<select id="selectAllMemberList" resultMap='memResult'>
 		<![CDATA[
 			select * from t_member order by joinDate desc
@@ -63,9 +69,10 @@
 	</delete>
 	
 	<select id="searchMember" parameterType="memberVO" resultMap="memResult">
-		<![CDATA[
+		<!-- <![CDATA[
 			select * from t_member
-		]]>
+		]]> -->
+		<include refid="a" />
 		<where>
 			<if test="name != '' and name != null">
 			name=#{name}
@@ -95,5 +102,22 @@
 		</where>
 		order by joinDate desc
 	</select>
+	<!-- 인자값이 맵이 아닐 시 해당 자료형 이름이 키, 값은 넘어온 값으로 매칭됨 -->
+	<select id="foreachSelect" resultMap='memResult' parameterType='java.util.Map'>
+		<![CDATA[
+			select * from t_member
+		]]>
+		where name in
+		<foreach item='item' collection='list' open='(' separator=',' close=')'>
+			#{item}
+		</foreach>
+		order by joinDate desc
+	</select>
+	<insert id="foreachInsert" parameterType="java.util.Map">
+		<foreach item="item" collection="list" open="INSERT ALL" separator=" " close="SELECT * FROM DUAL" >
+		into t_member(id,pw,name,email)
+		values (#{item.id}, #{item.pw}, #{item.name}, #{item.email})
+		</foreach>
+	</insert>
 </mapper>
 

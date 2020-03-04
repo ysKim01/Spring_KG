@@ -1,6 +1,7 @@
 package com.spring.ex04;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -97,6 +98,24 @@ public class MemberServlet4 extends HttpServlet {
 			List membersList = dao.searchMember(memberVO);
 			request.setAttribute("membersList", membersList);
 			nextPage="test02/listMembers.jsp";
+		}
+		else if (action.equals("foreachSelect")) {
+			List nameList = new ArrayList();
+			nameList.add("홍길동");
+			nameList.add("김영상");
+			nameList.add("이순신");
+			List membersList = dao.foreachSelect(nameList);
+			request.setAttribute("membersList", membersList);
+			nextPage="test02/listMembers.jsp";
+		}
+		else if (action.equals("foreachInsert")) {
+			List memList = new ArrayList();
+			memList.add(new MemberVO("m1","1234","박길동","m1@mail.com"));
+			memList.add(new MemberVO("m2","1234","최길동","m2@mail.com"));
+			memList.add(new MemberVO("m3","1234","대길동","m3@mail.com"));
+
+			int result = dao.foreachInsert(memList);
+			nextPage = "mem4.do?action=listMembers";
 		}
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);

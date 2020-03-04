@@ -99,10 +99,31 @@ SQL문에서 조건값 사용하는 방법
 	</otherwise>
 </choose>
 
+<foreach> 태그 사용법
+<foreach item="item" collection="list" index="index"
+open="("close=")" separator=",">
+	#{item}
+</foreach>
 
+<foreach> 태그의 속성
+- collection : 전달받은 인자 값을 의미하며, 배열과 List 계열
+인스턴스를 전달 할 수 있다. List 인스턴스 전달 시에는 list로 표시
+하고 배열 전달 시에는 array로 표시한다.
+- index : foreach문이 반복될 때마다 1씩 증가시키면서 접근하는
+값의 위치를 나타낸다. 최초값의 위치는 0 이다.
+- item : 반복문이 실행 될때 마다 collection 속성에 지정된 값
+에 접근하여 차례대로 사용한다.
+- open : 해당 구문이 시작될때의 지정한 기호를 추가한다.
+- close : 해당 구문이 끝날 때의 지정한 기호를 추가 한다.
+- separator : 한번 이상 반복될 때 반복되는 사이에 지정한 기호를
+추가한다.
 
-
-
+마이바티스에서 오라클 연동해서 like 검색하는 방법
+select * from t_member where name like '%'#{name}'%'
+- 위에는 오라클 에러가 발생한다. 아래와 같이 작성해야 like 구현이 가능하다.
+select * from t_member where name like '%'||#{name}||'%'
+마이바티스 동적 SQL 기능 관련 사이트
+http://www.mybatis.org/mybatis-3/ko/dynamic-sql.html
 
 
 
