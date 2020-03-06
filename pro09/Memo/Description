@@ -1,0 +1,10 @@
+- Java Resources : java 
+- src > main > resources : image, html, js 
+			 > webapp > WEB-INF > views : jsp 
+			 
+pom.xml : 원하는 jar를 끌고오고 싶으면 <dependency> 를 설정 후 실행
+	> maven이 자동 설치해줌
+
+	
+spring action-mybatis설정
+jdbc.properties설정
